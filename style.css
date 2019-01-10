@@ -1,0 +1,76 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: white;
+}
+h1 {
+  padding: 10px;
+
+}
+.container {
+  width: 80%;
+  height: 100%;
+  padding: 20px;
+  margin: auto;
+  border-radius: 20px;
+  background: #75A0E0;
+}
+.wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 3px 3px;
+  background: #29A48E;
+}
+.option {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+ul li {
+  font-size: 20px;
+  margin-top: 20px;
+  list-style: none;
+}
+span {
+  font-size: 20px;
+  color: #53E002;
+}
+
+#insert {
+  width: 140px;
+  height: 30px;
+  font-size: 15px;
+  text-align: center;
+  border: 1px solid #50CC6F;
+  border-radius: 10px;
+
+}
+
+#modificaselect {
+  width: 160px;
+  height: 20px;
+  font-size: 15px;
+  border: 1px solid #50CC6F;
+  border-radius: 20px;
+  margin-right: 50px;
+
+}
+#mybutton {
+  width: 50px;
+  height: 30px;
+  font-size: 15px;
+  border: 1px solid #50CC6F;
+  border-radius: 10px;
+  margin-left: 10px;
+
+}

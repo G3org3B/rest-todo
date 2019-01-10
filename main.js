@@ -1,16 +1,17 @@
 
-vvar urlApi = 'http://157.230.17.132:3000/todos';
-var url = 'http://157.230.17.132:3015/todos';
+
+
+var url = 'http://157.230.17.132:3000/todos';
 var wrapper = $('.wrapper');
 var deleteNotes = $('.delete');
 var button = $('#mybutton');
-var input = $('#modifytext');
+var input = $('#insert');
 var select = $('#modificaselect');
 
-$(document).ready(function () {
+$(document).ready(function() {
     getData();
 
-    $(document).on('click', '.delete', function () {
+    $(document).on('click', '.delete', function() {
         var id = $(this).attr('data-id');
         $.ajax({
             url: url + '/' + id,
@@ -24,7 +25,7 @@ $(document).ready(function () {
         });
     });
 
-    button.click(function () {
+    button.click(function() {
 
         var text = input.val();
         var idData = $(".prova:selected").attr("data-id");
@@ -50,7 +51,7 @@ function printData(data) {
         var notes = data[i].text;
         var idData = data[i].id;
         select.append("<option class='prova' value='" + notes + "' data-id='" + idData + "'>" + notes + "</option>");
-        wrapper.children('ul').append('<li><span class="delete" data-id="' + idData + '">x</span>' + ' ' +  notes + '</li>');
+        wrapper.children('ul').append('<li><span class="delete" data-id="' + idData + '"> o </span>' + ' ' +  notes + '</li>');
     }
     wrapper.append('</ul>');
 }
