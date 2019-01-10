@@ -1,66 +1,71 @@
 
-var urlApi = 'http://157.230.17.132:3005/todos';
+vvar urlApi = 'http://157.230.17.132:3000/todos';
+var url = 'http://157.230.17.132:3015/todos';
 var wrapper = $('.wrapper');
-var input = $('#insert')
+var deleteNotes = $('.delete');
 var button = $('#mybutton');
+var input = $('#modifytext');
+var select = $('#modificaselect');
 
-$(document).ready(function() {
+$(document).ready(function () {
+    getData();
 
-  getData()
-
-  $.ajax({
-    url: urlApi,
-    method: 'GET',
-    success: function(data){
-      console.log(data);
-
-      printData(data);
-    },
-    error: function(err){
-
-    }
-  });
-
-  button.click(function(){
-    var mytext = input.val();
-    $.ajax({
-      url: urlApi,
-      method: 'POST',
-      data: {
-        text: mytext
-      },
-      success: function(data){
-        console.log(data);
-
-
-      },
-      error: function(err){
-
-      }
+    $(document).on('click', '.delete', function () {
+        var id = $(this).attr('data-id');
+        $.ajax({
+            url: url + '/' + id,
+            method: 'DELETE',
+            success: function (data) {
+                getData();
+            },
+            error: function (err) {
+                alert('si è verificato un errore');
+            }
+        });
     });
-  });
 
+    button.click(function () {
+
+        var text = input.val();
+        var idData = $(".prova:selected").attr("data-id");
+        $.ajax({
+            url: url + '/' + idData,
+            method: 'PUT',
+            success: function (data) {
+                getData();
+            },
+            error: function (err) {
+                alert('si è verificato un errore');
+            },
+            data: {"text": text}
+        });
+
+    });
 });
 
-function printData(obj){
-  wrapper.html('<ul>');
-  for (var i = 0; i < obj.length; i++) {
-    wrapper.children('ul').append('<li><span>id:'  + obj[i].id + '</span>' + obj[i].text + '<li>');
-  }
-  wrapper.append('</ul>');
-};
+function printData(data) {
+    wrapper.html('<ul>');
+    select.html('');
+    for (var i = 0; i < data.length; i++) {
+        var notes = data[i].text;
+        var idData = data[i].id;
+        select.append("<option class='prova' value='" + notes + "' data-id='" + idData + "'>" + notes + "</option>");
+        wrapper.children('ul').append('<li><span class="delete" data-id="' + idData + '">x</span>' + ' ' +  notes + '</li>');
+    }
+    wrapper.append('</ul>');
+}
 
 function getData() {
-  $.ajax({
-    url: urlApi,
-    method: 'GET',
-    success: function(data){
-      console.log(data);
+    $.ajax({
+        url: url,
+        method: 'GET',
+        success: function (data) {
+            console.log(data);
+            printData(data);
+        },
+        error: function (err) {
+            alert('si è verificato un errore');
+        }
 
-      printData(data);
-    },
-    error: function(err){
-
-    }
-  });
-};
+    });
+}
